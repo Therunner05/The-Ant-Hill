@@ -213,6 +213,7 @@ public class Nest {
                     if (buildings.get(i).getAphids() >= 1) {
                         if (buildings.get(i).getAphids() >= numLeft) {
                             buildings.get(i).minusAphids(numLeft);
+//                            break;
                         } else {
                             buildings.get(i).minusAphids(buildings.get(i).getAphids());
                             numLeft -= buildings.get(i).getAphids();
@@ -234,6 +235,7 @@ public class Nest {
                     if (buildings.get(i).getFood() >= 1) {
                         if (buildings.get(i).getFood() >= numLeft) {
                             buildings.get(i).minusFood(numLeft);
+//                            break;
                         } else {
                             buildings.get(i).minusFood(buildings.get(i).getFood());
                             numLeft -= buildings.get(i).getFood();
@@ -255,6 +257,7 @@ public class Nest {
                     if (buildings.get(i).getProtein() >= 1) {
                         if (buildings.get(i).getProtein() >= numLeft) {
                             buildings.get(i).minusProtein(numLeft);
+//                            break;
                         } else {
                             buildings.get(i).minusProtein(buildings.get(i).getProtein());
                             numLeft -= buildings.get(i).getProtein();
@@ -279,6 +282,7 @@ public class Nest {
                     if (!buildings.get(i).getAnts().isEmpty()) {
                         if (buildings.get(i).getAnts().size() >= numLeft) {
                             buildings.get(i).deleteAnt(numLeft);
+//                            break;
                         } else {
                             buildings.get(i).deleteAnt(buildings.get(i).getAnts().size());
                             numLeft -= buildings.get(i).getAnts().size();
