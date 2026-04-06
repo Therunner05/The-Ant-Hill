@@ -69,10 +69,21 @@ public class GrassyPatch extends Biomes {
                 }
                 case BEETLES -> {
                     drawables.add(new Images(usx - 50 + x, usy - 50 + y, "beetle.png", 0.1));
+                    if (amount > 1){
+                        drawables.add(new Images(usx - 25 + x, usy - 35 + y, "beetle.png", 0.1));
+                        if (amount >= 3){
+                            drawables.add(new Images(usx -40 + x, usy - 20 + y, "beetle.png", 0.1));
+                        }
+                    }
                 }
                 case GRASSHOPPERS -> {
-                    drawables.add(new Circle(usx + x, usy + y, 10, 40, Color.BLACK));
-                    drawables.add(new Circle(usx + x, usy + y, 10, 40, Color.BLACK));
+                    drawables.add(new Images(usx + x-10, usy + y, "grassHoper.png", 0.5));
+                    if(amount > 1){
+                        drawables.add(new Images(usx + x-59, usy + y-70, "grassHoper.png", 0.4));
+                        if (amount >= 3){
+                            drawables.add(new Images(usx + x-90, usy + y-30, "grassHoper.png", 0.4));
+                        }
+                    }
                 }
                 case PROTEIN -> {
                     drawables.add(new Circle(usx + x - 35, usy + y + 35, 10, Color.RED));

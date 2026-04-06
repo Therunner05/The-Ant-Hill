@@ -316,6 +316,16 @@ public class AntGameView extends Application {
         new Rect(0, 0, screenX, screenY, Color.rgb(128, 128, 128, 0.8)).draw(gc);
         if (!showStep()) return;
 
+        alert.setHeaderText("Battle");
+        alert.setContentText("In a situation where another large bug inhabits a biome, sending ants there will initiate a battle.\n" +
+                "each group of bugs has its total power written as how many ants would equal it.\n" +
+                "So 4 means 4 ants would have the same amount of strength");
+        if (!showStep()) return;
+
+        alert.setHeaderText("Battle");
+        alert.setContentText("Battles almost always result in loosing ants, so it isn't recommended during early game.\n" +
+                "winning a battle results in protein now being available at that biome.");
+        if (!showStep()) return;
 
         alert.setHeaderText("Available Ants");
         alert.setContentText("Throughout the game, you will need to use your ants to complete tasks");
@@ -1396,7 +1406,7 @@ public class AntGameView extends Application {
         new Texts( screenX/2-50,screenY/2 - 300,"Welcome to 'The Ant Hill!'", Color.WHITE).draw(gc);
         new Texts( screenX/2-40,screenY/2 - 285,"(Alpha version DEMO)", Color.WHITE).draw(gc);
         new Texts( screenX/2-275,screenY/2 - 260,"In this game, your goal is to create the largest, self sustaining ant colony," +
-                " and survive the most amount of days.", Color.WHITE).draw(gc);
+                " and survive for the longest time.", Color.WHITE).draw(gc);
         new Texts(screenX/2-120,screenY/2 - 242,"The following tutorial will help show you how (a bit).",Color.WHITE).draw(gc);
         new Texts(screenX/2-43,screenY/2 -15,"Name your nest to begin",Color.WHITE).draw(gc);
     }
