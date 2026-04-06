@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import game.shapes.*;
 import javafx.stage.StageStyle;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -110,6 +111,8 @@ public class AntGameView extends Application {
     private double mousey = 0;
     private boolean click = true;
 
+    private Button dictionaryButton;
+
 
 
     //all stuff for prior to the game starting (for now)
@@ -126,6 +129,7 @@ public class AntGameView extends Application {
         buildButton.setFocusTraversable(true);
         nextDay.setFocusTraversable(true);
         mapButton.setFocusTraversable(true);
+        dictionaryButton.setFocusTraversable(true);
         nest = new Nest(name.getText());
         //starter buildings
         nest.addBuilding(new ThroneRoom(usx+550,350));
@@ -164,6 +168,7 @@ public class AntGameView extends Application {
         name.relocate(screenX + screenX,screenY+screenY);
         buildButton.relocate(screenX-(usw-1310),10);
         mapButton.relocate(screenX-(usw-1258),10);
+        dictionaryButton.relocate(screenX-(usw-1166),10);
         nextDay.relocate(screenX-(usw-1365),10);
         aphids.relocate(15, 30);
         population.relocate(15,10);
@@ -1254,6 +1259,10 @@ public class AntGameView extends Application {
         messege2 = "";
         messege3 = "";
     }
+
+    private void showDictionary(ActionEvent event){
+        System.out.println("Dictionary Button Clicked");
+    }
     /**
      * @param stage The main stage
      * @throws Exception: IDK
@@ -1276,6 +1285,7 @@ public class AntGameView extends Application {
         name = new TextField("Nest Name");
         confName = new Button("confirm");
         nextDay = new Button("End Day");
+        dictionaryButton = new Button("Dictionary");
         createAntButton = new Button("Hatch Larva");
         layEggButton = new Button("Lay Egg");
         alert.getButtonTypes().setAll(okButton, closeButton);
@@ -1326,7 +1336,7 @@ public class AntGameView extends Application {
         root.getChildren().addAll(canvas,food,population,protein,ants,eggs,larvas,name,confName,aphids,
                 mapButton,buildButton,nextDay,requirements1,antsInUse,
                 requirements2, mapSelect, mapSelectButton, cancelSelection,layEggButton,createAntButton,requirements3,
-                barracksButton, pathsButton, foodStorageButton, proteinStorageButton, aphidFarmButton, requirements4);
+                barracksButton, pathsButton, foodStorageButton, proteinStorageButton, aphidFarmButton, requirements4, dictionaryButton);
 
         // 4. Configure the components (this is now done within the startGameMethod
         nextDay.relocate(-100,-100);
@@ -1389,6 +1399,9 @@ public class AntGameView extends Application {
         mapSelect.addEventHandler(KeyEvent.KEY_PRESSED, this::sendings);
         canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, this::buildHere);
 
+        dictionaryButton.relocate(-100, -100);
+        dictionaryButton.setFocusTraversable(false);
+        dictionaryButton.setOnAction(this::showDictionary);
         // 7. Show the stage
         stage.show();
 
@@ -1400,6 +1413,7 @@ public class AntGameView extends Application {
         new Texts(screenX/2-120,screenY/2 - 242,"The following tutorial will help show you how (a bit).",Color.WHITE).draw(gc);
         new Texts(screenX/2-43,screenY/2 -15,"Name your nest to begin",Color.WHITE).draw(gc);
     }
+
 
     public static void main(String[] args) {
         launch(args);
