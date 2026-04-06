@@ -712,6 +712,8 @@ public class AntGameView extends Application {
                 gc.setFill(Color.BLACK);
                 gc.fillRect(0,0,screenX,screenY);
                 //removing all remaining gui things
+                dictionaryButton.relocate(-100,-100);
+                dictionaryButton.setFocusTraversable(false);
                 nextDay.relocate(-100,-100);
                 buildButton.relocate(-100,-100);
                 mapButton.relocate(-100,-100);
@@ -1255,6 +1257,8 @@ public class AntGameView extends Application {
         layEggButton.setFocusTraversable(true);
         createAntButton.relocate(screenX-(usw-1345),280);
         createAntButton.setFocusTraversable(true);
+        dictionaryButton.relocate(screenX-(usw-1166),10);
+        dictionaryButton.setFocusTraversable(true);
     }
     /// this shows the text box, for updates to what happened. 
     private void showTextBox(){
