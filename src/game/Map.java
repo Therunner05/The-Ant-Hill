@@ -117,8 +117,8 @@ public class Map {
     public int selected(double x, double y){
         //only searching through the visible biomes on screen
         for (int i = 0; i < biomes.size(); i++){
-            if (biomes.get(i).getY() >= usy - 200 && biomes.get(i).getX() >= usx - 200) {
-                if (biomes.get(i).getY() <= ush + 200 && biomes.get(i).getX() <= usw + 200) {
+            if (biomes.get(i).getY() >= -350 && biomes.get(i).getX() >= -350) {
+                if (biomes.get(i).getY() <= ush + 350 && biomes.get(i).getX() <= usw + 350) {
                     double[] location = biomes.get(i).location();
                     //checking if the biome was tapped
                     if (x > location[0] && x < location[1]){
