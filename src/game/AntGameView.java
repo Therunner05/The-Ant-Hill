@@ -36,7 +36,7 @@ import java.util.Optional;
  */
 public class AntGameView extends Application {
 
-    private final boolean cheatMode = true; //set to true to test game
+    private final boolean cheatMode = false; //set to true to test game
 
     //variables for start up/set up
     private GraphicsContext gc;
@@ -214,10 +214,6 @@ public class AntGameView extends Application {
         reDraw();
         new Rect(105, 0, screenX, 30, Color.rgb(128, 128, 128, 0.8)).draw(gc);
         new Rect(0, 30, screenX, screenY, Color.rgb(128, 128, 128, 0.8)).draw(gc);
-        if (!showStep()) return;
-
-        alert.setHeaderText("Population");
-        alert.setContentText("Your ant Queen is counted in this number, plus your 5 worker ants.\nThis also includes your larva.");
         if (!showStep()) return;
 
         alert.setHeaderText("Food");
