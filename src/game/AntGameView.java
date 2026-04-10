@@ -36,7 +36,7 @@ import java.util.Optional;
  */
 public class AntGameView extends Application {
 
-    private final boolean cheatMode = false; //set to true to test game
+    private final boolean cheatMode = true; //set to true to test game
 
     //variables for start up/set up
     private GraphicsContext gc;
@@ -314,7 +314,7 @@ public class AntGameView extends Application {
 
         alert.setHeaderText("Collecting");
         alert.setContentText("When collecting resources you will be stopped from sending to many ants.\n" +
-                "However, if your storage is full, your ants will still be sent, but will fail to store the food.");
+                "However, if your storage becomes full, unused ants will be returned to you automatically.");
         mapSelect.getValueFactory().setValue(map.selected(screenX/2-200, screenY/2));
         cancelSelectionMethod(null);
         sending(null);
@@ -952,9 +952,11 @@ public class AntGameView extends Application {
                                     if (foodLeft < proteinLeft) {
                                         map.biome(num).addAmount(foodLeft);
                                         messege3 = foodLeft + " seeds left behind. (storage is full)";
+                                        unUsedAnts(foodLeft);
                                     } else {
                                         map.biome(num).addAmount(proteinLeft);
                                         messege3 = proteinLeft + " seeds left behind. (storage is full)";
+                                        unUsedAnts(proteinLeft);
                                     }
                                 }
                                 complete = true;
@@ -980,6 +982,7 @@ public class AntGameView extends Application {
                                 if (foodLeft > 0) {
                                     map.biome(num).addAmount(foodLeft);
                                     messege2 = foodLeft + " food left behind. (storage is full)";
+                                    unUsedAnts(foodLeft);
                                 }
                                 complete = true;
                                 break;
@@ -1004,6 +1007,7 @@ public class AntGameView extends Application {
                                 if (proteinLeft > 0) {
                                     map.biome(num).addAmount(proteinLeft);
                                     messege2 = proteinLeft + " protein left behind. (storage is full)";
+                                    unUsedAnts(proteinLeft);
                                 }
                                 complete = true;
                                 break;
@@ -1028,6 +1032,7 @@ public class AntGameView extends Application {
                                 if (aphidsLeft > 0) {
                                     map.biome(num).addAmount(aphidsLeft);
                                     messege2 = aphidsLeft + " aphid(s) left behind. (storage is full)";
+                                    unUsedAnts(aphidsLeft);
                                 }
                                 complete = true;
                             }
@@ -1159,6 +1164,12 @@ public class AntGameView extends Application {
         } else {
             click = true;
         }
+    }
+
+    public void unUsedAnts(int leftOver){
+        int used = nest.getAntsInUse();
+        nest.clearAntsInUse();
+        nest.AddAntsInUse((int)used-(leftOver/map.biome(num).getAntMultiplier()));
     }
 
 
