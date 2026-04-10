@@ -487,7 +487,7 @@ public class AntGameView extends Application {
                 path.get(i).spaceOpen(gc);
             }
             boolean complete = false;
-            for (int i = 0; i < path.size() && !complete; i++) {
+            for (int i = 0; i < path.size() && !complete; i++) { //path highlights, clickable area
                 if (me.getX() >= path.get(i).getBuildingX() && me.getX() <= path.get(i).getBuildingX() + 20 &&
                         me.getY() >= path.get(i).getBuildingY() && me.getY() <= path.get(i).getBuildingY() + 250) {
                     if (!path.get(i).isBuildingDone()) {
@@ -497,7 +497,7 @@ public class AntGameView extends Application {
                     }
                 }
             }
-            for (int i = 0; i < build.size() && !complete; i++) {
+            for (int i = 0; i < build.size() && !complete; i++) { //building highlights, clickable area
                 if (me.getX() >= build.get(i).getBuildingX() && me.getX() <= build.get(i).getBuildingX() + 150 &&
                         me.getY() >= build.get(i).getBuildingY() && me.getY() <= build.get(i).getBuildingY() + 75) {
                     if (!build.get(i).isBuildingDone() && (i < 2 || path.getFirst().isBuildingDone())) {
@@ -624,7 +624,7 @@ public class AntGameView extends Application {
     public void buildAPath(ActionEvent e){
         if (nest.AddAntsInUse(5)){
             if (nest.minusFood(5)) {
-                nest.addBuilding(new Path(usx + buildingX, usy + buildingY, path.get(spot)));
+                nest.addBuilding(new Path(buildingX, buildingY, path.get(spot)));
                 title = "Building Completed";
                 messege1 = "You built a new path";
                 messege2 = "new building spots available";

@@ -7,9 +7,9 @@ import game.shapes.Shape;
 
 public class PathSpot {
     private boolean buildingDone = false;
-    private double buildingX;
-    private double buildingY;
-    private Shape build; //little highlighted area
+    private final double buildingX;
+    private final double buildingY;
+    private final Shape build; //little highlighted area
 
     public PathSpot(int buildingX, int buildingY, double usx, double usy) {
         this.buildingX = buildingX + usx;
