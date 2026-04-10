@@ -1,10 +1,7 @@
 package game.biomes;
 
 import game.IDrawable;
-import game.shapes.Circle;
-import game.shapes.Images;
-import game.shapes.Rect;
-import game.shapes.Texts;
+import game.shapes.*;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
@@ -64,10 +61,8 @@ public class Biomes implements IDrawable {
     public void selected(GraphicsContext gc) {
         new Circle(usx + (x) - 103, usy + (y) - 103, 103, Color.WHITE).draw(gc);
         draw(gc);
-        new Rect(usx + usw, 0, screenX - (usw + usx), screenY, Color.BLACK);
-        new Rect(0, 0, screenX - (usw + usx), screenY, Color.BLACK);
-        new Rect(0, 0, screenX, screenY - (ush + usy), Color.BLACK);
-        new Rect(0, usy + ush, screenX, screenY - (ush + usy), Color.BLACK);
+        new Rect(5,5,235,80,Color.WHITE).draw(gc);
+        new RectS(5,5,235,80,Color.BLACK).draw(gc);
     }
 
     //graphics
