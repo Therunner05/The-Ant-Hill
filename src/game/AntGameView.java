@@ -36,7 +36,7 @@ import java.util.Optional;
  */
 public class AntGameView extends Application {
 
-    private final boolean cheatMode = true; //set to true to test game
+    private final boolean cheatMode = false; //set to true to test game
 
     //variables for start up/set up
     private GraphicsContext gc;
