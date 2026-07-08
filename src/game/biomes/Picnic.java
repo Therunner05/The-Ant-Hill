@@ -79,7 +79,7 @@ public class Picnic extends Biomes {
                     drawables.add(new Circle(usx + x - 6 + 11, usy + y - 8 + 25, 17, 10, Color.BEIGE));
                 }
                 case BEETLES -> {
-                    drawables.add(new Images(usx - 50 + x, usy - 50 + y, "beetle.png", 0.1));
+                    drawables.add(new Images(usx - 50 + x, usy - 50 + y, "beetle.png", 0.13));
                 }
                 case PROTEIN -> {
                     drawables.add(new Circle(usx + x - 35, usy + y + 35, 10, Color.RED));
