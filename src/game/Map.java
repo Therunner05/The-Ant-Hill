@@ -39,7 +39,7 @@ public class Map {
         blackSides.add(new Rect(0,usy+ush,screenX,screenY-(ush + usy),Color.BLACK));
 
 
-        //the loop that generates the map. currently, seeds aren't recorded or usable
+        //the loop that generates the map. currently, seeds aren't recorded or usable. (might make maps a file download, rather than a seed)
         double y = (ush/2-11235); //first row
         for (int j = 100; j > 0; j--){
             double x = -10280; //first column
@@ -84,23 +84,27 @@ public class Map {
             //checking if its adjacency should be set to true (needs to be fixed at some point to be better...
             if (!biomes.get(i).isAdjacent()) {
                 if (i == 0) {//first area/biome
-                    if (biomes.get(i + 1).getFound() || biomes.get(i + 100).getFound()) {
+                    if (biomes.get(i + 1).getFound() || biomes.get(i + 101).getFound() || biomes.get(i + 100).getFound()) {
                         biomes.get(i).setAdjacent(true);
                     }
                 }else if (i < 100){//top row (first row)
-                    if (biomes.get(i - 1).getFound() || biomes.get(i + 1).getFound() || biomes.get(i + 100).getFound()){
+                    if (biomes.get(i - 1).getFound() || biomes.get(i + 99).getFound() || biomes.get(i + 101).getFound()
+                            || (biomes.get(i + 1).getFound() && i%100 != 99) || biomes.get(i + 100).getFound()){
                         biomes.get(i).setAdjacent(true);
                     }
-                } else if (i == biomes.size() - 1) {//last area/biome
-                    if (biomes.get(i - 1).getFound() || biomes.get(i - 100).getFound()) {
+                } else if (i == biomes.size() - 1) {//VERY last area/biome
+                    if (biomes.get(i - 1).getFound() || biomes.get(i - 101).getFound() || biomes.get(i - 100).getFound()) {
                         biomes.get(i).setAdjacent(true);
                     }
                 }else if (i >= 9900){//bottom row (last row)
-                    if (biomes.get(i - 1).getFound() || biomes.get(i - 100).getFound() || biomes.get(i + 1).getFound()){
+                    if ((biomes.get(i - 1).getFound() && i%100 != 0) || biomes.get(i - 100).getFound() || biomes.get(i + 1).getFound()
+                            || biomes.get(i - 99).getFound() || biomes.get(i - 101).getFound() ){
                         biomes.get(i).setAdjacent(true);
                     }
-                } else if (biomes.get(i - 1).getFound() || biomes.get(i + 1).getFound() || //all the rest of the areas/biomes
-                        biomes.get(i + 100).getFound() || biomes.get(i - 100).getFound()) {
+                } else if (biomes.get(i + 100).getFound() || biomes.get(i - 100).getFound()//all the rest of the areas/biomes
+                            || (biomes.get(i - 1).getFound() && i%100 != 0) || (biomes.get(i + 1).getFound() && i%100 != 99)  /*
+                            || biomes.get(i + 101).getFound() || biomes.get(i - 101).getFound()
+                            || biomes.get(i + 99).getFound()  || biomes.get(i - 99).getFound() */ ) {
                     biomes.get(i).setAdjacent(true);
                 }
             }
