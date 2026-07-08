@@ -165,6 +165,14 @@ public class Map {
         return biomes.get(num);
     }
 
+    public void nextSeason(int season){
+        if(season != 3){
+            for(Biomes biome : biomes){
+                biome.restock();
+            }
+        }
+    }
+
     /// this method enables cheat mode, which causes clouds to disappear, and every biome to be found.
     public void cheatMode() {
         for (Biomes biome : biomes){

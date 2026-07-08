@@ -50,6 +50,28 @@ public class GrassyPatch extends Biomes {
     }
 
     @Override
+    public void restock() {
+        type = TYPE_CHANCES[rand.nextInt(TYPE_CHANCES.length)];
+        content = type.name().toLowerCase();
+
+        //selecting how many or how much it contains
+        switch (type) {
+            case MUSHROOMS -> amount = rand.nextInt(1, 11);
+            case BEETLES -> {
+                amount = rand.nextInt(1, 3);
+                strength = (int) (amount * 4);
+                isBug = true;
+            }
+            case GRASSHOPPERS -> {
+                amount = rand.nextInt(1, 5);
+                strength = (int) (amount * 2);
+                isBug = true;
+            }
+            case APHIDS -> amount = 1;
+        }
+    }
+
+    @Override
     public void loadGraphics() {
         if(super.getContent().equals("protein")){
             type = PROTEIN;

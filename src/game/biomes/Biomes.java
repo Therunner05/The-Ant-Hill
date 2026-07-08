@@ -9,7 +9,7 @@ import javafx.stage.Screen;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Biomes implements IDrawable {
+public abstract class Biomes implements IDrawable {
 
     //universal variables (location stuff and some graphics related things) (also the randomizer)
     protected Random rand = new Random();
@@ -64,6 +64,8 @@ public class Biomes implements IDrawable {
         new Rect(5,5,235,80,Color.WHITE).draw(gc);
         new RectS(5,5,235,80,Color.BLACK).draw(gc);
     }
+
+    public void restock(){};
 
     //graphics
     public void loadGraphics() {

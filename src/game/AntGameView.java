@@ -32,7 +32,9 @@ import java.util.Optional;
  * @author Owen Culver
  * Ant Simulator Games View File
  * notes for work:
- * add more usful comments, remove/move logic code into appropriate classes, also, fix the way buildings are recongise as built...
+ * move map to be stored INSIDE of nest. this will require MASSIVE amounts of moving methods and code and such, but will result in a cleaner view file, and improved way of creating map and nest interaction methods.
+ * add more usful comments,
+ * Fix the way buildings are recongise as built... <-- cant remember what this building thing means, im afraid to go see.
  */
 public class AntGameView extends Application {
 
@@ -148,7 +150,7 @@ public class AntGameView extends Application {
             nest.getBuildings().get(1).addAnts(new Ant());
         }
         nest.calcAll();
-        //the background (don't touch unless your improving graphics)
+        //the background (wouldn't touch unless your improving graphics)
         background.add(new Rect(0,0,screenX,screenY,Color.rgb(135, 206, 235)));
         background.add(new Rect(0,200,screenX,screenY,Color.GREEN));
         background.add(new Rect(0,210,screenX,screenY,Color.rgb(61, 35, 13)));
@@ -163,7 +165,7 @@ public class AntGameView extends Application {
         background.add(new Texts(screenX - (usw-1377 + 88),324,"1 Larva, 5 Protein, 5 Food",Color.WHITE)); // hatching larva
                 //drawing background first
         reDraw();
-        /*drawing / updating everything else*/
+        //drawing / updating everything else
         confName.relocate(screenX + screenX,screenY+screenY);
         name.relocate(screenX + screenX,screenY+screenY);
         buildButton.relocate(screenX-(usw-1310),10);
@@ -366,7 +368,7 @@ public class AntGameView extends Application {
         alert.setHeaderText("Day Counter");
         alert.setContentText("This is your day counter, for keeping track of how long you have survived.");
         new Rect(0, 0, screenX, screenY-80, Color.rgb(128, 128, 128, 0.8)).draw(gc);
-        new Rect(0, screenY-80, screenX-50, 80, Color.rgb(128, 128, 128, 0.8)).draw(gc);
+        new Rect(50, screenY-80, screenX-50, 80, Color.rgb(128, 128, 128, 0.8)).draw(gc);
         if (!showStep()) return;
 
         reDraw();
@@ -393,7 +395,18 @@ public class AntGameView extends Application {
                         gc, j);
             }
         }
-        new Texts(screenX - 40, screenY - 43, "Day " + nest.getDays(), Color.WHITE).draw(gc);
+        new Texts(10, screenY - 43, "Day " + nest.getDays(), Color.WHITE).draw(gc);
+        String post = "";
+        if(nest.dayOfSeason == 1){
+            post = "st";
+        } else if (nest.dayOfSeason == 2){
+            post = "nd";
+        } else if (nest.dayOfSeason == 3){
+            post = "rd";
+        } else {
+            post = "th";
+        }
+        new Texts(screenX - 85, screenY - 43, nest.dayOfSeason + post +", " + nest.seasons[nest.season], Color.WHITE).draw(gc);
     }
 
     //building methods (take up most of the file honestly... def was a MUCH better way to do this.)
@@ -742,8 +755,29 @@ public class AntGameView extends Application {
             }
             showTextBox();
             updateStats();
-            new Rect(screenX - 20,screenY - 60,40,20,Color.rgb(61, 35, 13)).draw(gc);
-            new Texts(screenX - 40, screenY - 43, "Day " + nest.getDays(), Color.WHITE).draw(gc);
+            //updating the time/date
+            if (nest.dayOfSeason == 15){
+                nest.season++;
+                nest.dayOfSeason = 1;
+                if (nest.season >= 4){
+                    nest.season = 0;
+                }
+                map.nextSeason(nest.season);
+            }
+            new Rect(screenX - 85,screenY - 60,100,20,Color.rgb(61, 35, 13)).draw(gc);
+            new Rect(10,screenY - 60,100,20,Color.rgb(61, 35, 13)).draw(gc);
+            new Texts(10, screenY - 43, "Day " + nest.getDays(), Color.WHITE).draw(gc);
+            String post = "";
+            if(nest.dayOfSeason == 1){
+                post = "st";
+            } else if (nest.dayOfSeason  == 2){
+                post = "nd";
+            } else if (nest.dayOfSeason  == 3){
+                post = "rd";
+            } else {
+                post = "th";
+            }
+            new Texts(screenX - 85, screenY - 43, nest.dayOfSeason + post +", " + nest.seasons[nest.season], Color.WHITE).draw(gc);
         }
     }
     /// this updates all the states being displayed on the screen, to match the nests stats.
@@ -792,7 +826,8 @@ public class AntGameView extends Application {
             mapSelect.relocate(-100,-100);
             mapDrawn = false;
             mapButton.setText("Map");
-            new Texts(screenX - 40, screenY - 43, "Day " + nest.getDays(), Color.WHITE).draw(gc);
+            new Rect(10,screenY - 60,100,20,Color.rgb(61, 35, 13)).draw(gc);
+            new Texts(10, screenY - 43, "Day " + nest.getDays(), Color.WHITE).draw(gc);
         }
     }
 

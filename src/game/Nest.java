@@ -31,6 +31,10 @@ public class Nest {
     private int maxEggs;
     private int maxLarva;
     private int days = 1;
+    public int daysPerSeason = 14;
+    public int dayOfSeason = 1;
+    public int season = 0;
+    public String[] seasons= {"Spring", "Summer", "Fall", "Winter"};
     private double foodGeneration = 0; //(from aphids, each aphids gives 0.2 per a turn)
 
 
@@ -158,6 +162,7 @@ public class Nest {
     // setters/adders/next day function? why did I put that there.
     public int nextDay(){ //next day also carries out the 'add larva' function that would have been created, but is instead integrated here.
         this.days++;
+        this.dayOfSeason++;
         int numEggsHatched = 0;
         //this is scanning through each building
         for (int j = 0; j < buildings.size(); j++) {
