@@ -88,8 +88,8 @@ public class Map {
                         biomes.get(i).setAdjacent(true);
                     }
                 }else if (i < 100){//top row (first row)
-                    if (biomes.get(i - 1).getFound() || biomes.get(i + 99).getFound() || biomes.get(i + 101).getFound()
-                            || (biomes.get(i + 1).getFound() && i%100 != 99) || biomes.get(i + 100).getFound()){
+                    if (biomes.get(i - 1).getFound() || biomes.get(i + 99).getFound() || biomes.get(i + 100).getFound()
+                            || (i%100 != 99 && (biomes.get(i + 1).getFound() || biomes.get(i + 101).getFound())) ){
                         biomes.get(i).setAdjacent(true);
                     }
                 } else if (i == biomes.size() - 1) {//VERY last area/biome
@@ -97,14 +97,14 @@ public class Map {
                         biomes.get(i).setAdjacent(true);
                     }
                 }else if (i >= 9900){//bottom row (last row)
-                    if ((biomes.get(i - 1).getFound() && i%100 != 0) || biomes.get(i - 100).getFound() || biomes.get(i + 1).getFound()
-                            || biomes.get(i - 99).getFound() || biomes.get(i - 101).getFound() ){
+                    if (biomes.get(i - 100).getFound() || biomes.get(i + 1).getFound() || biomes.get(i - 99).getFound()
+                            || (i%100 != 0 && (biomes.get(i - 1).getFound() || biomes.get(i - 101).getFound())) ){
                         biomes.get(i).setAdjacent(true);
                     }
                 } else if (biomes.get(i + 100).getFound() || biomes.get(i - 100).getFound()//all the rest of the areas/biomes
-                            || (biomes.get(i - 1).getFound() && i%100 != 0) || (biomes.get(i + 1).getFound() && i%100 != 99)  /*
-                            || biomes.get(i + 101).getFound() || biomes.get(i - 101).getFound()
-                            || biomes.get(i + 99).getFound()  || biomes.get(i - 99).getFound() */ ) {
+                        || (i%100 != 0 && (biomes.get(i - 1).getFound() || biomes.get(i + 99).getFound() || biomes.get(i - 101).getFound()))
+                        || (i%100 != 99 && (biomes.get(i + 1).getFound() || biomes.get(i - 99).getFound() || biomes.get(i + 101).getFound()))
+                ) {
                     biomes.get(i).setAdjacent(true);
                 }
             }
